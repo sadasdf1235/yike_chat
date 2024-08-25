@@ -1,0 +1,71 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/chat/chat",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/discover/discover",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/mine/mine",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/search/search",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path" : "pages/message/message",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
+		},
+		{
+			"path" : "pages/user_detail/user_detail",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
+		}
+	],
+	"tabBar": {
+		"list": [{
+				"pagePath": "pages/chat/chat",
+				"iconPath": "static/images/tabs/chat.png",
+				"selectedIconPath": "static/images/tabs/chat.png",
+				"text": "消息"
+			},
+			{
+				"pagePath": "pages/discover/discover",
+				"iconPath": "static/images/tabs/chat.png",
+				"selectedIconPath": "static/images/tabs/chat.png",
+				"text": "发现"
+			},
+			{
+				"pagePath": "pages/mine/mine",
+				"iconPath": "static/images/tabs/mine.png",
+				"selectedIconPath": "static/images/tabs/mine.png",
+				"text": "我的"
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {}
+}
