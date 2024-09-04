@@ -1,17 +1,25 @@
 <template>
-	<view class="container">
-		<view class="app_bar">
-			<img class="avatar"
-				src="https://ts2.cn.mm.bing.net/th?id=ORMS.35c9466342ed96c647c73579400fb9e2&pid=Wdp&w=300&h=156&qlt=90&c=1&rs=1&dpr=1.25&p=0"
-				alt="头像" />
-			<view class="title">
-				<img class="title_img" src="@/static/images/火.png" alt="" />
-			</view>
-			<view class="action">
-				<uni-icons type="search" size="26" @click="intoSearch"></uni-icons>
-				<uni-icons type="plusempty" size="26" @click="intoAddFriend"></uni-icons>
-			</view>
-		</view>
+	<z-paging ref="paging" v-model="dataList" @query="queryList">
+		<template #top>
+			<Navbar>
+				<template #left>
+					<img class="avatar"
+						src="https://ts2.cn.mm.bing.net/th?id=ORMS.35c9466342ed96c647c73579400fb9e2&pid=Wdp&w=300&h=156&qlt=90&c=1&rs=1&dpr=1.25&p=0"
+						alt="头像" />
+				</template>
+				<template #middle>
+					<view class="title">
+						<img class="title_img" src="@/static/images/火.png" alt="" />
+					</view>
+				</template>
+				<template #right>
+					<view class="action">
+						<uni-icons type="search" size="26" @click="intoSearch"></uni-icons>
+						<uni-icons type="plusempty" size="26" @click="intoAddFriend"></uni-icons>
+					</view>
+				</template>
+			</Navbar>
+		</template>
 		<view class="chat_list">
 			<view class="chat" v-for="chat in 10" :key="chat" @click="intoMessage(chat)">
 				<img class="avatar"
@@ -27,10 +35,10 @@
 				</view>
 			</view>
 		</view>
-	</view>
+	</z-paging>
 </template>
 
-<script setup>
+<script setup lang="ts">
 	import {
 		ref
 	} from 'vue';
@@ -42,94 +50,84 @@
 	const intoAddFriend = () => {
 
 	}
-	const intoMessage = (chat) => {
+	const intoMessage = () => {
 		uni.navigateTo({
-			url:'/pages/message/message'
+			url: '/pages/message/message'
 		})
 	}
 </script>
 
 <style lang="scss" scoped>
-	.container {
-		padding: 10rpx 32rpx 0 32rpx;
+	.avatar {
+		width: 70rpx;
+		height: 70rpx;
+		border-radius: 8px;
+		flex: 1;
+	}
 
-		.app_bar {
+	.title {
+		display: flex;
+		justify-content: center;
+
+		.title_img {
+			width: 88rpx;
+			height: 42rpx;
+		}
+	}
+
+	.action {
+		display: flex;
+		justify-content: space-evenly;
+	}
+
+	.chat_list {
+		padding: 10rpx 32rpx;
+
+		.chat {
 			display: flex;
 			justify-content: space-between;
-			align-items: center;
+			margin-top: 30rpx;
 
 			.avatar {
-				width: 70rpx;
-				height: 70rpx;
-				border-radius: 8px;
+				width: 96rpx;
+				height: 96rpx;
+				border-radius: 24rpx;
 				flex: 1;
 			}
 
-			.title {
-				flex: 6;
+			.chat_content {
 				display: flex;
-				justify-content: center;
-
-				.title_img {
-					width: 88rpx;
-					height: 42rpx;
-				}
-			}
-
-			.action {
-				flex: 2;
-				display: flex;
-				justify-content: space-evenly;
-			}
-		}
-
-		.chat_list {
-
-			.chat {
-				display: flex;
+				flex-direction: column;
 				justify-content: space-between;
-				margin-top: 30rpx;
+				flex: 4;
+				margin-left: 32rpx;
 
-				.avatar {
-					width: 96rpx;
-					height: 96rpx;
-					border-radius: 24rpx;
-					flex: 1;
+				.username {
+					font-size: 36rpx;
+					color: #272832;
 				}
 
-				.chat_content {
-					display: flex;
-					flex-direction: column;
-					justify-content: space-between;
-					flex: 4;
-					margin-left: 32rpx;
-
-					.username {
-						font-size: 36rpx;
-						color: #272832;
-					}
-
-					.msg {
-						font-size: 28rpx;
-						color: rgba(39, 40, 50, 0.60);
-					}
-				}
-
-				.status {
-					flex: 1;
+				.msg {
 					font-size: 28rpx;
 					color: rgba(39, 40, 50, 0.60);
-					display: flex;
-					flex-direction: column;
-					justify-content: space-between;
-					.msg_num {
-						width: 60rpx;
-						color: #fdfdfd;
-						text-align: center;
-						background-color: #cccccc;
-						border: 2rpx solid;
-						border-radius: 20rpx;
-					}
+				}
+			}
+
+			.status {
+				flex: 1;
+				font-size: 28rpx;
+				color: rgba(39, 40, 50, 0.60);
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+
+				.msg_num {
+					width: 60rpx;
+					color: #fdfdfd;
+					text-align: center;
+					background-color: #cccccc;
+					border: 2rpx solid;
+					border-radius: 20rpx;
 				}
 			}
 		}

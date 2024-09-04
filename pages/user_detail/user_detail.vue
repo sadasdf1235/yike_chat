@@ -15,12 +15,16 @@
 				</text>
 			</view>
 		</view>
-		<button class="handle">加为好友</button>
+		<button class="handle" @click="intoAddFriend">加为好友</button>
 	</view>
 </template>
 
-<script setup>
-
+<script setup lang="ts">
+const intoAddFriend = () => {
+	uni.navigateTo({
+		url:'/pages/addFriend/addFriend'
+	})
+}
 </script>
 
 <style lang="scss" scoped>

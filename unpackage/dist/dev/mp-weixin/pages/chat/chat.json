@@ -1,6 +1,9 @@
 {
   "navigationBarTitleText": "",
+  "navigationStyle": "custom",
   "usingComponents": {
-    "uni-icons": "../../uni_modules/uni-icons/components/uni-icons/uni-icons"
+    "uni-icons": "../../uni_modules/uni-icons/components/uni-icons/uni-icons",
+    "navbar": "../../components/Navbar/Navbar",
+    "z-paging": "../../uni_modules/z-paging/components/z-paging/z-paging"
   }
 }
