@@ -1,0 +1,11 @@
+
+.text-view.data-v-159c00b2 {
+	box-sizing: border-box;
+}
+.nv.data-v-159c00b2 {
+  display: inline-flex;
+  vertical-align: middle;
+  flex-shrink:1;
+}
+
+

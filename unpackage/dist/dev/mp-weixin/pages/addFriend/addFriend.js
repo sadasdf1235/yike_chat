@@ -1,6 +1,6 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-const _sfc_main = {
+const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
   __name: "addFriend",
   setup(__props) {
     const signature = common_vendor.ref("亲爱的，快点来到我这里～");
@@ -19,6 +19,6 @@ const _sfc_main = {
       };
     };
   }
-};
+});
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-51ba3ded"]]);
 wx.createPage(MiniProgramPage);

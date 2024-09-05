@@ -1,35 +1,29 @@
 <template>
 	<z-paging ref="paging" v-model="dataList" @query="queryList">
 		<template #top>
-			<Navbar>
+			<tm-navbar hideHome :padding="[32,0]">
 				<template #left>
-					<img class="avatar"
-						src="https://ts2.cn.mm.bing.net/th?id=ORMS.35c9466342ed96c647c73579400fb9e2&pid=Wdp&w=300&h=156&qlt=90&c=1&rs=1&dpr=1.25&p=0"
-						alt="头像" />
+					<tm-avatar :size="70"
+						img="https://ts2.cn.mm.bing.net/th?id=ORMS.35c9466342ed96c647c73579400fb9e2&pid=Wdp&w=300&h=156&qlt=90&c=1&rs=1&dpr=1.25&p=0"></tm-avatar>
 				</template>
-				<template #middle>
-					<view class="title">
-						<img class="title_img" src="@/static/images/火.png" alt="" />
-					</view>
-				</template>
+				<img class="title_img" src="@/static/images/火.png" alt="" />
 				<template #right>
-					<view class="action">
+					<view class="flex flex-around">
 						<uni-icons type="search" size="26" @click="intoSearch"></uni-icons>
 						<uni-icons type="plusempty" size="26" @click="intoAddFriend"></uni-icons>
 					</view>
 				</template>
-			</Navbar>
+			</tm-navbar>
 		</template>
-		<view class="chat_list">
-			<view class="chat" v-for="chat in 10" :key="chat" @click="intoMessage(chat)">
-				<img class="avatar"
-					src="https://ts2.cn.mm.bing.net/th?id=ORMS.3eb85da3993ccf02c1d5f09582891300&pid=Wdp&w=300&h=156&qlt=90&c=1&rs=1&dpr=1.25&p=0"
-					alt="" />
-				<view class="chat_content">
-					<text class="username">username</text>
-					<text class="msg">hello world!</text>
+		<view class="px-32 py-10">
+			<view class="flex flex-between mt-30" v-for="chat in 10" :key="chat" @click="intoMessage(chat)">
+				<tm-avatar :size="96" round="4"
+					img="https://ts2.cn.mm.bing.net/th?id=ORMS.3eb85da3993ccf02c1d5f09582891300&pid=Wdp&w=300&h=156&qlt=90&c=1&rs=1&dpr=1.25&p=0"></tm-avatar>
+				<view class="flex flex-col flex-1 ml-32">
+					<text class="text-size-xl text-#272832">username</text>
+					<text class="text-size-n text-#ccc">hello world!</text>
 				</view>
-				<view class="status">
+				<view class="text-size-n flex flex-col">
 					<text class="time">09.30</text>
 					<view class="msg_num">1</view>
 				</view>
@@ -39,9 +33,8 @@
 </template>
 
 <script setup lang="ts">
-	import {
-		ref
-	} from 'vue';
+	import tmNavbar from '@/tmui/components/tm-navbar/tm-navbar.vue'
+	import tmAvatar from '@/tmui/components/tm-avatar/tm-avatar.vue'
 	const intoSearch = () => {
 		uni.navigateTo({
 			url: '/pages/search/search'
@@ -58,78 +51,17 @@
 </script>
 
 <style lang="scss" scoped>
-	.avatar {
-		width: 70rpx;
-		height: 70rpx;
-		border-radius: 8px;
-		flex: 1;
+	.title_img {
+		width: 88rpx;
+		height: 42rpx;
 	}
 
-	.title {
-		display: flex;
-		justify-content: center;
-
-		.title_img {
-			width: 88rpx;
-			height: 42rpx;
-		}
-	}
-
-	.action {
-		display: flex;
-		justify-content: space-evenly;
-	}
-
-	.chat_list {
-		padding: 10rpx 32rpx;
-
-		.chat {
-			display: flex;
-			justify-content: space-between;
-			margin-top: 30rpx;
-
-			.avatar {
-				width: 96rpx;
-				height: 96rpx;
-				border-radius: 24rpx;
-				flex: 1;
-			}
-
-			.chat_content {
-				display: flex;
-				flex-direction: column;
-				justify-content: space-between;
-				flex: 4;
-				margin-left: 32rpx;
-
-				.username {
-					font-size: 36rpx;
-					color: #272832;
-				}
-
-				.msg {
-					font-size: 28rpx;
-					color: rgba(39, 40, 50, 0.60);
-				}
-			}
-
-			.status {
-				flex: 1;
-				font-size: 28rpx;
-				color: rgba(39, 40, 50, 0.60);
-				display: flex;
-				flex-direction: column;
-				justify-content: space-between;
-
-				.msg_num {
-					width: 60rpx;
-					color: #fdfdfd;
-					text-align: center;
-					background-color: #cccccc;
-					border: 2rpx solid;
-					border-radius: 20rpx;
-				}
-			}
-		}
+	.msg_num {
+		width: 60rpx;
+		color: #fdfdfd;
+		text-align: center;
+		background-color: #cccccc;
+		border: 2rpx solid;
+		border-radius: 20rpx;
 	}
 </style>
