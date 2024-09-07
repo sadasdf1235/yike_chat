@@ -1,7 +1,7 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 const hooks_useSystemInfo = require("../../hooks/useSystemInfo.js");
-const _sfc_main = {
+const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
   __name: "search",
   setup(__props) {
     const {
@@ -30,6 +30,6 @@ const _sfc_main = {
       };
     };
   }
-};
+});
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-c10c040c"]]);
 wx.createPage(MiniProgramPage);

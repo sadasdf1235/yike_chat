@@ -5,8 +5,13 @@ const useSystemInfo = () => {
   const navHeight = common_vendor.ref(0);
   const menuButtonInfo = common_vendor.ref(null);
   common_vendor.onBeforeMount(() => {
-    const { system, statusBarHeight } = common_vendor.index.getSystemInfoSync();
-    menuButtonInfo.value = common_vendor.index.getMenuButtonBoundingClientRect();
+    const {
+      system,
+      statusBarHeight
+    } = common_vendor.index.getSystemInfoSync();
+    if (common_vendor.index.getMenuButtonBoundingClientRect) {
+      menuButtonInfo.value = common_vendor.index.getMenuButtonBoundingClientRect();
+    }
     const isIOS = system.indexOf("iOS") > -1;
     navHeight.value = !isIOS ? 96 : 88;
     status.value = statusBarHeight * 2;

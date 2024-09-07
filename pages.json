@@ -3,7 +3,8 @@
 		{
 			"path": "pages/chat/chat",
 			"style": {
-				"navigationBarTitleText": ""
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom"
 			}
 		},
 		{
@@ -26,37 +27,41 @@
 			}
 		},
 		{
-			"path" : "pages/message/message",
-			"style" : 
-			{
-				"navigationBarTitleText" : ""
+			"path": "pages/message/message",
+			"style": {
+				"navigationBarTitleText": ""
 			}
 		},
 		{
-			"path" : "pages/user_detail/user_detail",
-			"style" : 
-			{
-				"navigationBarTitleText" : ""
+			"path": "pages/user_detail/user_detail",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/addFriend/addFriend",
+			"style": {
+				"navigationBarTitleText": ""
 			}
 		}
 	],
 	"tabBar": {
 		"list": [{
 				"pagePath": "pages/chat/chat",
-				"iconPath": "static/images/tabs/chat.png",
-				"selectedIconPath": "static/images/tabs/chat.png",
+				"iconPath": "static/icons/tabs/chat.png",
+				"selectedIconPath": "static/icons/tabs/chat.png",
 				"text": "消息"
 			},
 			{
 				"pagePath": "pages/discover/discover",
-				"iconPath": "static/images/tabs/chat.png",
-				"selectedIconPath": "static/images/tabs/chat.png",
+				"iconPath": "static/icons/tabs/chat.png",
+				"selectedIconPath": "static/icons/tabs/chat.png",
 				"text": "发现"
 			},
 			{
 				"pagePath": "pages/mine/mine",
-				"iconPath": "static/images/tabs/mine.png",
-				"selectedIconPath": "static/images/tabs/mine.png",
+				"iconPath": "static/icons/tabs/mine.png",
+				"selectedIconPath": "static/icons/tabs/mine.png",
 				"text": "我的"
 			}
 		]
