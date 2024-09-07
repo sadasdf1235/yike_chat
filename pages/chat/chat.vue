@@ -8,16 +8,14 @@
 				</template>
 				<img class="title_img" src="@/static/images/火.png" alt="" />
 				<template #right>
-					<view class="flex flex-around">
-						<uni-icons type="search" size="26" @click="intoSearch"></uni-icons>
-						<uni-icons type="plusempty" size="26" @click="intoAddFriend"></uni-icons>
-					</view>
+					<uni-icons type="search" size="26" @click="intoSearch"></uni-icons>
+					<uni-icons class="mr-32" type="plusempty" size="26" @click="intoAddFriend"></uni-icons>
 				</template>
 			</tm-navbar>
 		</template>
 		<view class="px-32 py-10">
 			<view class="flex flex-between mt-30" v-for="chat in 10" :key="chat" @click="intoMessage(chat)">
-				<tm-avatar :size="96" round="4"
+				<tm-avatar :size="96" :round="4"
 					img="https://ts2.cn.mm.bing.net/th?id=ORMS.3eb85da3993ccf02c1d5f09582891300&pid=Wdp&w=300&h=156&qlt=90&c=1&rs=1&dpr=1.25&p=0"></tm-avatar>
 				<view class="flex flex-col flex-1 ml-32">
 					<text class="text-size-xl text-#272832">username</text>
@@ -33,8 +31,10 @@
 </template>
 
 <script setup lang="ts">
-	import tmNavbar from '@/tmui/components/tm-navbar/tm-navbar.vue'
-	import tmAvatar from '@/tmui/components/tm-avatar/tm-avatar.vue'
+	const dataList = []
+	const queryList = () => {
+		
+	}
 	const intoSearch = () => {
 		uni.navigateTo({
 			url: '/pages/search/search'
@@ -43,7 +43,8 @@
 	const intoAddFriend = () => {
 
 	}
-	const intoMessage = () => {
+	const intoMessage = (chat:unknown) => {
+		console.log(chat)
 		uni.navigateTo({
 			url: '/pages/message/message'
 		})
