@@ -1,9 +1,25 @@
 "use strict";
+var __defProp = Object.defineProperty;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
 const common_vendor = require("../../../common/vendor.js");
 const tmui_tool_function_util = require("../function/util.js");
 const tmui_tool_theme_theme = require("../theme/theme.js");
 const useTheme = (props, store) => {
-  var _a;
+  var _a, _b;
   let dark = common_vendor.ref(false);
   let isNvue = common_vendor.ref(false);
   let customCSSStyle = common_vendor.ref({});
@@ -17,7 +33,7 @@ const useTheme = (props, store) => {
   let theme = common_vendor.ref(computedTheme(props.value, dark.value, store.value));
   let customThemeConfig = {};
   common_vendor.watchEffect(() => {
-    var _a2, _b, _c, _d, _e, _f, _g, _h, _i, _j;
+    var _a2, _b2, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p;
     const followDark = props.value.followDark;
     let lsdark = props.value.dark;
     if (followDark) {
@@ -27,16 +43,16 @@ const useTheme = (props, store) => {
     if (store.value.os == "android" && isNvue.value) {
       blur.value = false;
     } else {
-      blur.value = ((_a2 = props.value) == null ? void 0 : _a2.blur) ?? false;
+      blur.value = (_b2 = (_a2 = props.value) == null ? void 0 : _a2.blur) != null ? _b2 : false;
     }
-    customCSSStyle.value = computedStyle((_b = props.value) == null ? void 0 : _b._style);
-    parentClass.value = ((_c = props.value) == null ? void 0 : _c.parenClass) || ((_d = props.value) == null ? void 0 : _d.parentClass) || "";
-    transparent.value = (((_e = props.value) == null ? void 0 : _e.transprent) ?? ((_f = props.value) == null ? void 0 : _f.transparent)) || false;
-    customClass.value = computedClas(((_g = props.value) == null ? void 0 : _g._class) ?? "");
-    margin.value = tmui_tool_function_util.valToMarginAr(((_h = props.value) == null ? void 0 : _h.margin) ?? null);
-    padding.value = tmui_tool_function_util.valToMarginAr(((_i = props.value) == null ? void 0 : _i.padding) ?? null);
-    round.value = tmui_tool_function_util.valToRoundStrClass(((_j = props.value) == null ? void 0 : _j.round) ?? "");
-    theme.value = computedTheme({ ...props.value, ...customThemeConfig }, dark.value, store.value);
+    customCSSStyle.value = computedStyle((_c = props.value) == null ? void 0 : _c._style);
+    parentClass.value = ((_d = props.value) == null ? void 0 : _d.parenClass) || ((_e = props.value) == null ? void 0 : _e.parentClass) || "";
+    transparent.value = ((_h = (_f = props.value) == null ? void 0 : _f.transprent) != null ? _h : (_g = props.value) == null ? void 0 : _g.transparent) || false;
+    customClass.value = computedClas((_j = (_i = props.value) == null ? void 0 : _i._class) != null ? _j : "");
+    margin.value = tmui_tool_function_util.valToMarginAr((_l = (_k = props.value) == null ? void 0 : _k.margin) != null ? _l : null);
+    padding.value = tmui_tool_function_util.valToMarginAr((_n = (_m = props.value) == null ? void 0 : _m.padding) != null ? _n : null);
+    round.value = tmui_tool_function_util.valToRoundStrClass((_p = (_o = props.value) == null ? void 0 : _o.round) != null ? _p : "");
+    theme.value = computedTheme(__spreadValues(__spreadValues({}, props.value), customThemeConfig), dark.value, store.value);
   });
   return {
     dark,
@@ -57,7 +73,7 @@ const useTheme = (props, store) => {
     parentClass,
     transparent,
     _props: props,
-    proxy: ((_a = common_vendor.getCurrentInstance()) == null ? void 0 : _a.proxy) ?? null,
+    proxy: (_b = (_a = common_vendor.getCurrentInstance()) == null ? void 0 : _a.proxy) != null ? _b : null,
     blur
   };
 };
@@ -73,7 +89,7 @@ function computedStyle(_style) {
     });
     let kl = {};
     k.forEach((el) => {
-      kl = { ...kl, ...el };
+      kl = __spreadValues(__spreadValues({}, kl), el);
     });
     return kl;
   }
@@ -83,7 +99,7 @@ function computedStyle(_style) {
   if (typeof _style == "object" && Array.isArray(_style)) {
     let kl = {};
     _style.forEach((el) => {
-      kl = { ...kl, ...el };
+      kl = __spreadValues(__spreadValues({}, kl), el);
     });
     return kl;
   }
@@ -99,6 +115,7 @@ function computedClas(_class) {
   return "";
 }
 function computedTheme(props, dark, store) {
+  var _a;
   const color = props.color;
   const border = props.border;
   const shadow = props.shadow;
@@ -110,7 +127,7 @@ function computedTheme(props, dark, store) {
   const linear = props.linear;
   const linearDeep2 = props.linearDeep;
   const blur = props.blur;
-  var borderColor = (props == null ? void 0 : props.borderColor) ?? "";
+  var borderColor = (_a = props == null ? void 0 : props.borderColor) != null ? _a : "";
   var theme = new tmui_tool_theme_theme.theme.themeColors(store.colorList);
   if (tmui_tool_theme_theme.theme.isCssColor(color) && !theme.hasColors(color)) {
     theme = new tmui_tool_theme_theme.theme.themeColors(theme.add(color, color));

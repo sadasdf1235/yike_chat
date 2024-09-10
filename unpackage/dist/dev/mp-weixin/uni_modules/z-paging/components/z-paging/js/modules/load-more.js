@@ -1,4 +1,24 @@
 "use strict";
+var __async = (__this, __arguments, generator) => {
+  return new Promise((resolve, reject) => {
+    var fulfilled = (value) => {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    };
+    var rejected = (value) => {
+      try {
+        step(generator.throw(value));
+      } catch (e) {
+        reject(e);
+      }
+    };
+    var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+    step((generator = generator.apply(__this, __arguments)).next());
+  });
+};
 const uni_modules_zPaging_components_zPaging_js_zPagingUtils = require("../z-paging-utils.js");
 const uni_modules_zPaging_components_zPaging_js_zPagingEnum = require("../z-paging-enum.js");
 const loadMoreModule = {
@@ -281,35 +301,37 @@ const loadMoreModule = {
       }
     },
     // 判断当没有更多数据且分页内容未超出z-paging时是否显示没有更多数据的view
-    async _checkShowNoMoreInside(totalData, oldScrollViewNode, oldPagingContainerNode) {
-      try {
-        const scrollViewNode = oldScrollViewNode || await this._getNodeClientRect(".zp-scroll-view");
-        if (this.usePageScroll) {
-          if (scrollViewNode) {
-            const scrollViewTotalH = scrollViewNode[0].top + scrollViewNode[0].height;
-            this.insideOfPaging = scrollViewTotalH < this.windowHeight;
+    _checkShowNoMoreInside(totalData, oldScrollViewNode, oldPagingContainerNode) {
+      return __async(this, null, function* () {
+        try {
+          const scrollViewNode = oldScrollViewNode || (yield this._getNodeClientRect(".zp-scroll-view"));
+          if (this.usePageScroll) {
+            if (scrollViewNode) {
+              const scrollViewTotalH = scrollViewNode[0].top + scrollViewNode[0].height;
+              this.insideOfPaging = scrollViewTotalH < this.windowHeight;
+              if (this.hideNoMoreInside) {
+                this.showLoadingMore = !this.insideOfPaging;
+              }
+              this._updateInsideOfPaging();
+            }
+          } else {
+            const pagingContainerNode = oldPagingContainerNode || (yield this._getNodeClientRect(".zp-paging-container-content"));
+            const pagingContainerH = pagingContainerNode ? pagingContainerNode[0].height : 0;
+            const scrollViewH = scrollViewNode ? scrollViewNode[0].height : 0;
+            this.insideOfPaging = pagingContainerH < scrollViewH;
             if (this.hideNoMoreInside) {
               this.showLoadingMore = !this.insideOfPaging;
             }
             this._updateInsideOfPaging();
           }
-        } else {
-          const pagingContainerNode = oldPagingContainerNode || await this._getNodeClientRect(".zp-paging-container-content");
-          const pagingContainerH = pagingContainerNode ? pagingContainerNode[0].height : 0;
-          const scrollViewH = scrollViewNode ? scrollViewNode[0].height : 0;
-          this.insideOfPaging = pagingContainerH < scrollViewH;
+        } catch (e) {
+          this.insideOfPaging = !totalData.length;
           if (this.hideNoMoreInside) {
             this.showLoadingMore = !this.insideOfPaging;
           }
           this._updateInsideOfPaging();
         }
-      } catch (e) {
-        this.insideOfPaging = !totalData.length;
-        if (this.hideNoMoreInside) {
-          this.showLoadingMore = !this.insideOfPaging;
-        }
-        this._updateInsideOfPaging();
-      }
+      });
     },
     // 是否要展示上拉加载更多view
     _showLoadingMore(type) {

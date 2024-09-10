@@ -1,5 +1,9 @@
 {
   "navigationBarTitleText": "",
   "navigationStyle": "custom",
-  "usingComponents": {}
+  "usingComponents": {
+    "tm-input": "../../tmui/components/tm-input/tm-input",
+    "tm-navbar": "../../tmui/components/tm-navbar/tm-navbar",
+    "tm-app": "../../tmui/components/tm-app/tm-app"
+  }
 }

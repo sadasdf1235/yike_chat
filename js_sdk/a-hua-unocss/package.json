@@ -1,0 +1,20 @@
+{
+    "id": "a-hua-unocss",
+    "name": "unocss",
+    "displayName": "unocss",
+    "version": "1.0.38",
+    "description": "ctrl+f 或 command+f 在当前搜索你需要使用的 CSS 属性",
+    "keywords": [
+        "轻量",
+        "原子化",
+        "css",
+        "style",
+        "unocss"
+    ],
+    "dcloudext": {
+        "category": [
+            "JS SDK",
+            "通用 SDK"
+        ]
+    }
+}

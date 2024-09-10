@@ -1,4 +1,24 @@
 "use strict";
+var __async = (__this, __arguments, generator) => {
+  return new Promise((resolve, reject) => {
+    var fulfilled = (value) => {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    };
+    var rejected = (value) => {
+      try {
+        step(generator.throw(value));
+      } catch (e) {
+        reject(e);
+      }
+    };
+    var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+    step((generator = generator.apply(__this, __arguments)).next());
+  });
+};
 const uni_modules_zPaging_components_zPaging_js_zPagingUtils = require("../z-paging-utils.js");
 const uni_modules_zPaging_components_zPaging_js_zPagingConstant = require("../z-paging-constant.js");
 const uni_modules_zPaging_components_zPaging_js_zPagingEnum = require("../z-paging-enum.js");
@@ -150,11 +170,11 @@ const virtualListModule = {
       const cellIndexKey = this.virtualCellIndexKey;
       item[cellIndexKey] = `custom-${this.virtualItemInsertedCount}`;
       item[uni_modules_zPaging_components_zPaging_js_zPagingConstant.c.listCellIndexUniqueKey] = `${this.virtualListKey}-${item[cellIndexKey]}`;
-      this.$nextTick(async () => {
+      this.$nextTick(() => __async(this, null, function* () {
         let retryCount = 0;
         while (retryCount <= 10) {
-          await uni_modules_zPaging_components_zPaging_js_zPagingUtils.u.wait(uni_modules_zPaging_components_zPaging_js_zPagingConstant.c.delayTime);
-          const cellNode = await this._getNodeClientRect(`#zp-id-${item[cellIndexKey]}`, this.finalUseInnerList);
+          yield uni_modules_zPaging_components_zPaging_js_zPagingUtils.u.wait(uni_modules_zPaging_components_zPaging_js_zPagingConstant.c.delayTime);
+          const cellNode = yield this._getNodeClientRect(`#zp-id-${item[cellIndexKey]}`, this.finalUseInnerList);
           if (!cellNode) {
             retryCount++;
             continue;
@@ -175,7 +195,7 @@ const virtualListModule = {
           this._updateVirtualScroll(this.oldScrollTop);
           break;
         }
-      });
+      }));
     },
     // 在使用动态高度虚拟列表时，手动更新指定cell的缓存高度(当cell高度在初始化之后再次改变时调用)；index:需要更新的cell在列表中的位置，从0开始
     didUpdateVirtualListCell(index) {
@@ -265,9 +285,9 @@ const virtualListModule = {
       const currentCacheList = dataFromTop ? [] : heightCacheList;
       let listTotalHeight = 0;
       this.$nextTick(() => {
-        uni_modules_zPaging_components_zPaging_js_zPagingUtils.u.delay(async () => {
+        uni_modules_zPaging_components_zPaging_js_zPagingUtils.u.delay(() => __async(this, null, function* () {
           for (let i = 0; i < list.length; i++) {
-            const cellNode = await this._getNodeClientRect(`#zp-id-${list[i][this.virtualCellIndexKey]}`, this.finalUseInnerList);
+            const cellNode = yield this._getNodeClientRect(`#zp-id-${list[i][this.virtualCellIndexKey]}`, this.finalUseInnerList);
             const currentHeight = cellNode ? cellNode[0].height : 0;
             if (!cellNode) {
               if (this.getCellHeightRetryCount.dynamic <= 10) {
@@ -297,7 +317,7 @@ const virtualListModule = {
             this.virtualHeightCacheList = currentCacheList.concat(heightCacheList);
           }
           this._updateVirtualScroll(this.oldScrollTop);
-        }, uni_modules_zPaging_components_zPaging_js_zPagingConstant.c.delayTime, "updateDynamicCellHeightDelay");
+        }), uni_modules_zPaging_components_zPaging_js_zPagingConstant.c.delayTime, "updateDynamicCellHeightDelay");
       });
     },
     // 设置cellItem的index

@@ -46,7 +46,7 @@
 			}
 		},
 		{
-			"path": "pages/addFriend/addFriend",
+			"path": "pages/add-friend/add-friend",
 			"style": {
 				"navigationBarTitleText": ""
 			}

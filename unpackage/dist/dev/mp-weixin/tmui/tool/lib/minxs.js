@@ -1,4 +1,20 @@
 "use strict";
+var __defProp = Object.defineProperty;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
 const tmui_tool_theme_theme = require("../theme/theme.js");
 const tmui_tool_lib_interface = require("./interface.js");
 const custom_props = {
@@ -176,7 +192,7 @@ const computedStyle = (props) => {
     });
     let kl = {};
     k.forEach((el) => {
-      kl = { ...kl, ...el };
+      kl = __spreadValues(__spreadValues({}, kl), el);
     });
     return kl;
   }
@@ -186,13 +202,14 @@ const computedStyle = (props) => {
   if (typeof _style == "object" && Array.isArray(_style)) {
     let kl = {};
     _style.forEach((el) => {
-      kl = { ...kl, ...el };
+      kl = __spreadValues(__spreadValues({}, kl), el);
     });
     return kl;
   }
   return {};
 };
 const computedTheme = (props, dark, store) => {
+  var _a;
   const color = props.color;
   const border = props.border;
   const shadow = props.shadow;
@@ -204,7 +221,7 @@ const computedTheme = (props, dark, store) => {
   const linear = props.linear;
   const linearDeep2 = props.linearDeep;
   const blur = props.blur;
-  var borderColor = (props == null ? void 0 : props.borderColor) ?? "";
+  var borderColor = (_a = props == null ? void 0 : props.borderColor) != null ? _a : "";
   var theme = new tmui_tool_theme_theme.theme.themeColors(store.colorList);
   if (tmui_tool_theme_theme.theme.isCssColor(color) && !theme.hasColors(color)) {
     theme = new tmui_tool_theme_theme.theme.themeColors(theme.add(color, color));

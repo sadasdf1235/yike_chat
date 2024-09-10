@@ -1,12 +1,30 @@
 "use strict";
+var __defProp = Object.defineProperty;
+var __defProps = Object.defineProperties;
+var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
+var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 const common_vendor = require("../../../common/vendor.js");
 const tmui_tool_lib_minxs = require("../../tool/lib/minxs.js");
 const tmui_tool_lib_tmpinia = require("../../tool/lib/tmpinia.js");
 const tmui_tool_useFun_useTheme = require("../../tool/useFun/useTheme.js");
 const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
   __name: "tm-sheet",
-  props: {
-    ...tmui_tool_lib_minxs.custom_props,
+  props: __spreadProps(__spreadValues({}, tmui_tool_lib_minxs.custom_props), {
     parenClass: {
       type: String,
       default: ""
@@ -78,7 +96,7 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       type: [Number, Array],
       default: 0
     }
-  },
+  }),
   emits: ["click", "longpress", "touchend", "touchstart", "touchcancel", "mousedown", "mouseup", "mouseleave"],
   setup(__props, { emit: __emit }) {
     const store = tmui_tool_lib_tmpinia.useTmpiniaStore();

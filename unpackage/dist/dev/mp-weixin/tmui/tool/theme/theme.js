@@ -1,12 +1,35 @@
 "use strict";
+var __defProp = Object.defineProperty;
+var __defProps = Object.defineProperties;
+var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
+var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
+var __publicField = (obj, key, value) => {
+  __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
+  return value;
+};
 var _a, _b, _c;
 const common_vendor = require("../../../common/vendor.js");
 const tmui_tool_theme_colortool = require("./colortool.js");
 const tmui_tool_lib_interface = require("../lib/interface.js");
 let localTheme = {};
-let theme = ((_c = (_b = (_a = common_vendor.index) == null ? void 0 : _a.$tm) == null ? void 0 : _b.config) == null ? void 0 : _c.theme) ? { ...common_vendor.index.$tm.config.theme } : localTheme;
+let theme = ((_c = (_b = (_a = common_vendor.index) == null ? void 0 : _a.$tm) == null ? void 0 : _b.config) == null ? void 0 : _c.theme) ? __spreadValues({}, common_vendor.index.$tm.config.theme) : localTheme;
 var colors = [];
-var colorObj = {
+var colorObj = __spreadValues({
   red: "#FE1C00",
   pink: "#CA145D",
   purple: "#A61BC3",
@@ -39,9 +62,8 @@ var colorObj = {
   "grey-darken-3": "#404044",
   "grey-darken-4": "#202022",
   "grey-darken-5": "#111112",
-  "grey-darken-6": "#0A0A0B",
-  ...theme
-};
+  "grey-darken-6": "#0A0A0B"
+}, theme);
 for (const key in colorObj) {
   if (Object.prototype.hasOwnProperty.call(colorObj, key)) {
     const element = String(colorObj[key]);
@@ -78,7 +100,7 @@ function getColor(colorName) {
 }
 class themeColors {
   constructor(c = colors) {
-    this.colors = [];
+    __publicField(this, "colors", []);
     this.colors = c;
   }
   hasColors(colorName = "") {
@@ -144,7 +166,7 @@ class themeColors {
    * @returns cssstyle 返回一个计算好的主题系。
    */
   getTheme(config = { colorname: "primary", dark: false }) {
-    var _a2, _b2;
+    var _a2, _b2, _c2, _d;
     if (!config["colorname"]) {
       console.error("颜色名称必填");
       config.colorname = "primary";
@@ -154,8 +176,8 @@ class themeColors {
       console.error("主题不存在，默认为primary");
       config.colorname = "primary";
     }
-    let nowColor = { ...this.colors[index] };
-    config.borderWidth = isNaN(parseInt(String(config["borderWidth"]))) ? 0 : config["borderWidth"] ?? 0;
+    let nowColor = __spreadValues({}, this.colors[index]);
+    config.borderWidth = isNaN(parseInt(String(config["borderWidth"]))) ? 0 : (_a2 = config["borderWidth"]) != null ? _a2 : 0;
     config.borderStyle = config["borderStyle"] ? config["borderStyle"] : "solid";
     config.borderColor = config["borderColor"] || "";
     config.borderDirection = config["borderDirection"] || tmui_tool_lib_interface.cssDirection.all;
@@ -191,32 +213,32 @@ class themeColors {
     }
     let css = {};
     css.color = nowColor.value;
-    css.config = { ...config };
+    css.config = __spreadValues({}, config);
     css.isBlackAndWhite = isBlackAndWhite;
     css.gradientColor = [];
     css.colorname = config.colorname;
-    let borderhsl = { ...nowColor.hsla };
+    let borderhsl = __spreadValues({}, nowColor.hsla);
     css.borderCss = {};
-    let bghsl = { ...nowColor.hsla };
+    let bghsl = __spreadValues({}, nowColor.hsla);
     if (config.dark && !isBlackAndWhite) {
       bghsl.l = 40;
     }
     if (config.blur) {
       bghsl.a = 0.85;
     }
-    css.backgroundColor = tmui_tool_theme_colortool.colortool.rgbaToCss(tmui_tool_theme_colortool.colortool.hslaToRgba({ ...bghsl }));
+    css.backgroundColor = tmui_tool_theme_colortool.colortool.rgbaToCss(tmui_tool_theme_colortool.colortool.hslaToRgba(__spreadValues({}, bghsl)));
     if (isBlackAndWhite && config.dark) {
-      css.backgroundColor = tmui_tool_theme_colortool.colortool.rgbaToCss(tmui_tool_theme_colortool.colortool.hslaToRgba({ ...bghsl, h: 240, s: 3, l: 8 }));
-      css.border = tmui_tool_theme_colortool.colortool.rgbaToCss(tmui_tool_theme_colortool.colortool.hslaToRgba({ ...borderhsl, h: 240, s: 3, l: 12 }));
+      css.backgroundColor = tmui_tool_theme_colortool.colortool.rgbaToCss(tmui_tool_theme_colortool.colortool.hslaToRgba(__spreadProps(__spreadValues({}, bghsl), { h: 240, s: 3, l: 8 })));
+      css.border = tmui_tool_theme_colortool.colortool.rgbaToCss(tmui_tool_theme_colortool.colortool.hslaToRgba(__spreadProps(__spreadValues({}, borderhsl), { h: 240, s: 3, l: 12 })));
     }
     if (isWhite && !config.dark) {
-      css.border = tmui_tool_theme_colortool.colortool.rgbaToCss(tmui_tool_theme_colortool.colortool.hslaToRgba({ ...borderhsl, l: 90 }));
+      css.border = tmui_tool_theme_colortool.colortool.rgbaToCss(tmui_tool_theme_colortool.colortool.hslaToRgba(__spreadProps(__spreadValues({}, borderhsl), { l: 90 })));
     }
     if (isBlack && !config.dark) {
-      css.border = tmui_tool_theme_colortool.colortool.rgbaToCss(tmui_tool_theme_colortool.colortool.hslaToRgba({ ...borderhsl, l: 12 }));
+      css.border = tmui_tool_theme_colortool.colortool.rgbaToCss(tmui_tool_theme_colortool.colortool.hslaToRgba(__spreadProps(__spreadValues({}, borderhsl), { l: 12 })));
     }
     css.backgroundColorCss = { "background-color": css.backgroundColor };
-    let txcolor = { ...nowColor.hsla };
+    let txcolor = __spreadValues({}, nowColor.hsla);
     if (config.dark) {
       txcolor.l = 95;
     } else {
@@ -380,25 +402,25 @@ class themeColors {
       }
     }
     if (config.dark == true) {
-      css = { ...css, ...((_b2 = (_a2 = common_vendor.index.$tm.config) == null ? void 0 : _a2.themeConfig) == null ? void 0 : _b2.dark) ?? {} };
+      css = __spreadValues(__spreadValues({}, css), (_d = (_c2 = (_b2 = common_vendor.index.$tm.config) == null ? void 0 : _b2.themeConfig) == null ? void 0 : _c2.dark) != null ? _d : {});
     }
     css.textColor = tmui_tool_theme_colortool.colortool.rgbaToCss(tmui_tool_theme_colortool.colortool.hslaToRgba(txcolor));
     if (config.dark) {
       if (nowColor.hsla.h == 0 && nowColor.hsla.s == 0) {
-        css.border = tmui_tool_theme_colortool.colortool.rgbaToCss(tmui_tool_theme_colortool.colortool.hslaToRgba({ ...nowColor.hsla, l: 12 }));
+        css.border = tmui_tool_theme_colortool.colortool.rgbaToCss(tmui_tool_theme_colortool.colortool.hslaToRgba(__spreadProps(__spreadValues({}, nowColor.hsla), { l: 12 })));
       } else {
-        css.border = tmui_tool_theme_colortool.colortool.rgbaToCss(tmui_tool_theme_colortool.colortool.hslaToRgba({ ...nowColor.hsla, l: bghsl.l + 10 }));
+        css.border = tmui_tool_theme_colortool.colortool.rgbaToCss(tmui_tool_theme_colortool.colortool.hslaToRgba(__spreadProps(__spreadValues({}, nowColor.hsla), { l: bghsl.l + 10 })));
       }
     } else {
       if (nowColor.hsla.h == 0 && nowColor.hsla.s == 0) {
-        css.border = tmui_tool_theme_colortool.colortool.rgbaToCss(tmui_tool_theme_colortool.colortool.hslaToRgba({ ...nowColor.hsla, l: 90 }));
+        css.border = tmui_tool_theme_colortool.colortool.rgbaToCss(tmui_tool_theme_colortool.colortool.hslaToRgba(__spreadProps(__spreadValues({}, nowColor.hsla), { l: 90 })));
       } else {
         if (config.text && config.outlined) {
-          css.border = tmui_tool_theme_colortool.colortool.rgbaToCss(tmui_tool_theme_colortool.colortool.hslaToRgba({ ...nowColor.hsla, l: 90 }));
+          css.border = tmui_tool_theme_colortool.colortool.rgbaToCss(tmui_tool_theme_colortool.colortool.hslaToRgba(__spreadProps(__spreadValues({}, nowColor.hsla), { l: 90 })));
         } else if (!config.text && config.outlined) {
-          css.border = tmui_tool_theme_colortool.colortool.rgbaToCss(tmui_tool_theme_colortool.colortool.hslaToRgba({ ...txcolor }));
+          css.border = tmui_tool_theme_colortool.colortool.rgbaToCss(tmui_tool_theme_colortool.colortool.hslaToRgba(__spreadValues({}, txcolor)));
         } else if (!config.text && !config.outlined && config.borderWidth > 0) {
-          css.border = tmui_tool_theme_colortool.colortool.rgbaToCss(tmui_tool_theme_colortool.colortool.hslaToRgba({ ...nowColor.hsla, l: bghsl.l - 3 }));
+          css.border = tmui_tool_theme_colortool.colortool.rgbaToCss(tmui_tool_theme_colortool.colortool.hslaToRgba(__spreadProps(__spreadValues({}, nowColor.hsla), { l: bghsl.l - 3 })));
         }
       }
       css.border = config.borderColor || css.border;

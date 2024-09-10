@@ -12,11 +12,11 @@
 			<view class="mt-60">
 				<text class="text-weight-b">用户</text>
 				<view class="flex flex-center mt-20" @click="intoDetail">
-					<img class="avatar"
+					<img class="w-80 h-80 rd-20 flex-1"
 						src="https://ts2.cn.mm.bing.net/th?id=ORMS.136ee85a4781fba51b21ca943e849ab4&pid=Wdp&w=300&h=156&qlt=90&c=1&rs=1&dpr=1.25&p=0"
 						alt="" />
 					<text class="name ml-32 text-size-m flex-5">adsada</text>
-					<button class="handle_active" @click.stop="handleClick($event)">发消息</button>
+					<button class="handle_active w-120 h-48 lh-48 fs-24 text-#4aaaff flex-2 rd-24" @click.stop="handleClick($event)">发消息</button>
 				</view>
 			</view>
 		</view>
@@ -41,28 +41,15 @@
 </script>
 
 <style lang="scss" scoped>
-	.avatar {
-		width: 80rpx;
-		height: 80rpx;
-		border-radius: 20rpx;
-		flex: 1;
-	}
 
 	.handle {
-		width: 120px;
-		height: 48rpx;
-		line-height: 48rpx;
 		background: rgba(74, 170, 255, 0.10);
-		border-radius: 24rpx;
-		font-size: 24rpx;
 		color: #4AAAFF;
-		flex: 2;
 	}
 
 	.handle_active {
 		@extend .handle;
 		background: #FFE431;
 		color: #272832;
-		flex: 2;
 	}
 </style>

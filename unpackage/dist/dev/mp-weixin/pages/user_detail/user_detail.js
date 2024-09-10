@@ -5,7 +5,7 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
   setup(__props) {
     const intoAddFriend = () => {
       common_vendor.index.navigateTo({
-        url: "/pages/addFriend/addFriend"
+        url: "/pages/add-friend/add-friend"
       });
     };
     return (_ctx, _cache) => {

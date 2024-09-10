@@ -6,7 +6,7 @@
 					<tm-avatar :size="70"
 						img="https://ts2.cn.mm.bing.net/th?id=ORMS.35c9466342ed96c647c73579400fb9e2&pid=Wdp&w=300&h=156&qlt=90&c=1&rs=1&dpr=1.25&p=0"></tm-avatar>
 				</template>
-				<img class="title_img" src="@/static/images/火.png" alt="" />
+				<img class="w-88 h-42" src="@/static/images/火.png" alt="" />
 				<template #right>
 					<uni-icons type="search" size="26" @click="intoSearch"></uni-icons>
 					<uni-icons class="mr-32" type="plusempty" size="26" @click="intoAddFriend"></uni-icons>
@@ -22,8 +22,8 @@
 					<text class="text-size-n text-#ccc">hello world!</text>
 				</view>
 				<view class="text-size-n flex flex-col">
-					<text class="time">09.30</text>
-					<view class="msg_num">1</view>
+					<text>09.30</text>
+					<view class="w-60 bg-#ccc text-#fdfdfd text-center rd-20 b-2">1</view>
 				</view>
 			</view>
 		</view>
@@ -41,7 +41,7 @@
 		})
 	}
 	const intoAddFriend = () => {
-
+		
 	}
 	const intoMessage = (chat:unknown) => {
 		console.log(chat)
@@ -52,17 +52,5 @@
 </script>
 
 <style lang="scss" scoped>
-	.title_img {
-		width: 88rpx;
-		height: 42rpx;
-	}
 
-	.msg_num {
-		width: 60rpx;
-		color: #fdfdfd;
-		text-align: center;
-		background-color: #cccccc;
-		border: 2rpx solid;
-		border-radius: 20rpx;
-	}
 </style>

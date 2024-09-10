@@ -2,18 +2,20 @@
 const common_vendor = require("../../common/vendor.js");
 const _sfc_main = {};
 if (!Array) {
-  const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
-  _easycom_uni_icons2();
+  const _easycom_tm_navbar2 = common_vendor.resolveComponent("tm-navbar");
+  const _easycom_tm_app2 = common_vendor.resolveComponent("tm-app");
+  (_easycom_tm_navbar2 + _easycom_tm_app2)();
 }
-const _easycom_uni_icons = () => "../../uni_modules/uni-icons/components/uni-icons/uni-icons.js";
+const _easycom_tm_navbar = () => "../../tmui/components/tm-navbar/tm-navbar.js";
+const _easycom_tm_app = () => "../../tmui/components/tm-app/tm-app.js";
 if (!Math) {
-  _easycom_uni_icons();
+  (_easycom_tm_navbar + _easycom_tm_app)();
 }
 function _sfc_render(_ctx, _cache) {
   return {
     a: common_vendor.p({
-      type: "left",
-      size: "30"
+      title: "name",
+      hideHome: true
     })
   };
 }

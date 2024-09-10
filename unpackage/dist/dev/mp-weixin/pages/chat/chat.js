@@ -2,20 +2,25 @@
 const common_vendor = require("../../common/vendor.js");
 const common_assets = require("../../common/assets.js");
 if (!Array) {
+  const _easycom_tm_avatar2 = common_vendor.resolveComponent("tm-avatar");
   const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
+  const _easycom_tm_navbar2 = common_vendor.resolveComponent("tm-navbar");
   const _easycom_z_paging2 = common_vendor.resolveComponent("z-paging");
-  (_easycom_uni_icons2 + _easycom_z_paging2)();
+  (_easycom_tm_avatar2 + _easycom_uni_icons2 + _easycom_tm_navbar2 + _easycom_z_paging2)();
 }
+const _easycom_tm_avatar = () => "../../tmui/components/tm-avatar/tm-avatar.js";
 const _easycom_uni_icons = () => "../../uni_modules/uni-icons/components/uni-icons/uni-icons.js";
+const _easycom_tm_navbar = () => "../../tmui/components/tm-navbar/tm-navbar.js";
 const _easycom_z_paging = () => "../../uni_modules/z-paging/components/z-paging/z-paging.js";
 if (!Math) {
-  (tmAvatar + _easycom_uni_icons + tmNavbar + _easycom_z_paging)();
+  (_easycom_tm_avatar + _easycom_uni_icons + _easycom_tm_navbar + _easycom_z_paging)();
 }
-const tmNavbar = () => "../../tmui/components/tm-navbar/tm-navbar.js";
-const tmAvatar = () => "../../tmui/components/tm-avatar/tm-avatar.js";
 const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
   __name: "chat",
   setup(__props) {
+    const dataList = [];
+    const queryList = () => {
+    };
     const intoSearch = () => {
       common_vendor.index.navigateTo({
         url: "/pages/search/search"
@@ -23,7 +28,8 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
     };
     const intoAddFriend = () => {
     };
-    const intoMessage = () => {
+    const intoMessage = (chat) => {
+      console.log(chat);
       common_vendor.index.navigateTo({
         url: "/pages/message/message"
       });
@@ -53,19 +59,19 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
           return {
             a: "0a633310-5-" + i0 + ",0a633310-0",
             b: chat,
-            c: common_vendor.o(($event) => intoMessage(), chat)
+            c: common_vendor.o(($event) => intoMessage(chat), chat)
           };
         }),
         i: common_vendor.p({
           size: 96,
-          round: "4",
+          round: 4,
           img: "https://ts2.cn.mm.bing.net/th?id=ORMS.3eb85da3993ccf02c1d5f09582891300&pid=Wdp&w=300&h=156&qlt=90&c=1&rs=1&dpr=1.25&p=0"
         }),
         j: common_vendor.sr("paging", "0a633310-0"),
-        k: common_vendor.o(_ctx.queryList),
-        l: common_vendor.o(($event) => _ctx.dataList = $event),
+        k: common_vendor.o(queryList),
+        l: common_vendor.o(($event) => dataList = $event),
         m: common_vendor.p({
-          modelValue: _ctx.dataList
+          modelValue: dataList
         })
       };
     };

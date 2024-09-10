@@ -1,12 +1,30 @@
 "use strict";
+var __defProp = Object.defineProperty;
+var __defProps = Object.defineProperties;
+var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
+var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 const common_vendor = require("../../../common/vendor.js");
 const tmui_tool_theme_theme = require("../../tool/theme/theme.js");
 const tmui_tool_lib_minxs = require("../../tool/lib/minxs.js");
 const tmui_tool_lib_tmpinia = require("../../tool/lib/tmpinia.js");
 const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
   __name: "tm-icon",
-  props: {
-    ...tmui_tool_lib_minxs.custom_props,
+  props: __spreadProps(__spreadValues({}, tmui_tool_lib_minxs.custom_props), {
     fontSize: {
       type: [Number],
       default: 34
@@ -49,15 +67,15 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       type: Boolean,
       default: false
     }
-  },
+  }),
   emits: ["click", "longpress"],
   setup(__props, { emit: __emit }) {
-    var _a;
+    var _a, _b;
     const store = tmui_tool_lib_tmpinia.useTmpiniaStore();
     const props = __props;
     const _rotateDeg = common_vendor.computed(() => props.rotateDeg);
     const emits = __emit;
-    ((_a = common_vendor.getCurrentInstance()) == null ? void 0 : _a.proxy) ?? null;
+    (_b = (_a = common_vendor.getCurrentInstance()) == null ? void 0 : _a.proxy) != null ? _b : null;
     const tmcfg = common_vendor.computed(() => store.tmStore);
     const customCSSStyle = common_vendor.computed(() => tmui_tool_lib_minxs.computedStyle(props));
     const customClass = common_vendor.computed(() => tmui_tool_lib_minxs.computedClass(props));

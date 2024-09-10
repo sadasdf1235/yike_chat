@@ -1,4 +1,24 @@
 "use strict";
+var __async = (__this, __arguments, generator) => {
+  return new Promise((resolve, reject) => {
+    var fulfilled = (value) => {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    };
+    var rejected = (value) => {
+      try {
+        step(generator.throw(value));
+      } catch (e) {
+        reject(e);
+      }
+    };
+    var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+    step((generator = generator.apply(__this, __arguments)).next());
+  });
+};
 const common_vendor = require("../../../../../../common/vendor.js");
 const uni_modules_zPaging_components_zPaging_js_zPagingUtils = require("../z-paging-utils.js");
 const uni_modules_zPaging_components_zPaging_js_zPagingEnum = require("../z-paging-enum.js");
@@ -221,31 +241,33 @@ const scrollerModule = {
       });
     },
     // 滚动到底部
-    async _scrollToBottom(animate = true) {
-      if (this.usePageScroll) {
-        this.$nextTick(() => {
-          common_vendor.index.pageScrollTo({
-            scrollTop: Number.MAX_VALUE,
-            duration: animate ? 100 : 0
-          });
-        });
-        return;
-      }
-      try {
-        this._updatePrivateScrollWithAnimation(animate);
-        const pagingContainerNode = await this._getNodeClientRect(".zp-paging-container");
-        const scrollViewNode = await this._getNodeClientRect(".zp-scroll-view");
-        const pagingContainerH = pagingContainerNode ? pagingContainerNode[0].height : 0;
-        const scrollViewH = scrollViewNode ? scrollViewNode[0].height : 0;
-        if (pagingContainerH > scrollViewH) {
-          this.scrollTop = this.oldScrollTop;
+    _scrollToBottom(animate = true) {
+      return __async(this, null, function* () {
+        if (this.usePageScroll) {
           this.$nextTick(() => {
-            this.scrollTop = pagingContainerH - scrollViewH + this.virtualPlaceholderTopHeight;
-            this.oldScrollTop = this.scrollTop;
+            common_vendor.index.pageScrollTo({
+              scrollTop: Number.MAX_VALUE,
+              duration: animate ? 100 : 0
+            });
           });
+          return;
         }
-      } catch (e) {
-      }
+        try {
+          this._updatePrivateScrollWithAnimation(animate);
+          const pagingContainerNode = yield this._getNodeClientRect(".zp-paging-container");
+          const scrollViewNode = yield this._getNodeClientRect(".zp-scroll-view");
+          const pagingContainerH = pagingContainerNode ? pagingContainerNode[0].height : 0;
+          const scrollViewH = scrollViewNode ? scrollViewNode[0].height : 0;
+          if (pagingContainerH > scrollViewH) {
+            this.scrollTop = this.oldScrollTop;
+            this.$nextTick(() => {
+              this.scrollTop = pagingContainerH - scrollViewH + this.virtualPlaceholderTopHeight;
+              this.oldScrollTop = this.scrollTop;
+            });
+          }
+        } catch (e) {
+        }
+      });
     },
     // 滚动到指定view
     _scrollIntoView(sel, offset = 0, animate = false, finishCallback) {
@@ -325,31 +347,35 @@ const scrollerModule = {
       }
     },
     // 检测z-paging是否要全屏覆盖(当使用页面滚动并且不满全屏时，默认z-paging需要铺满全屏，避免数据过少时内部的empty-view无法正确展示)
-    async _checkScrollViewShouldFullHeight(callback) {
-      try {
-        const scrollViewNode = await this._getNodeClientRect(".zp-scroll-view");
-        const pagingContainerNode = await this._getNodeClientRect(".zp-paging-container-content");
-        if (!scrollViewNode || !pagingContainerNode)
-          return;
-        const scrollViewHeight = pagingContainerNode[0].height;
-        const scrollViewTop = scrollViewNode[0].top;
-        if (this.isAddedData && scrollViewHeight + scrollViewTop <= this.windowHeight) {
-          this._setAutoHeight(true, scrollViewNode);
-          callback(scrollViewNode, pagingContainerNode);
-        } else {
-          this._setAutoHeight(false);
+    _checkScrollViewShouldFullHeight(callback) {
+      return __async(this, null, function* () {
+        try {
+          const scrollViewNode = yield this._getNodeClientRect(".zp-scroll-view");
+          const pagingContainerNode = yield this._getNodeClientRect(".zp-paging-container-content");
+          if (!scrollViewNode || !pagingContainerNode)
+            return;
+          const scrollViewHeight = pagingContainerNode[0].height;
+          const scrollViewTop = scrollViewNode[0].top;
+          if (this.isAddedData && scrollViewHeight + scrollViewTop <= this.windowHeight) {
+            this._setAutoHeight(true, scrollViewNode);
+            callback(scrollViewNode, pagingContainerNode);
+          } else {
+            this._setAutoHeight(false);
+            callback(null, null);
+          }
+        } catch (e) {
           callback(null, null);
         }
-      } catch (e) {
-        callback(null, null);
-      }
+      });
     },
     // 更新缓存中z-paging整个内容容器高度
-    async _updateCachedSuperContentHeight() {
-      const superContentNode = await this._getNodeClientRect(".z-paging-content");
-      if (superContentNode) {
-        this.superContentHeight = superContentNode[0].height;
-      }
+    _updateCachedSuperContentHeight() {
+      return __async(this, null, function* () {
+        const superContentNode = yield this._getNodeClientRect(".z-paging-content");
+        if (superContentNode) {
+          this.superContentHeight = superContentNode[0].height;
+        }
+      });
     },
     // scrollTop改变时触发
     _scrollTopChange(newVal, isPageScrollTop) {

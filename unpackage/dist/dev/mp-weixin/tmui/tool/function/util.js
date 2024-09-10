@@ -1,4 +1,20 @@
 "use strict";
+var __defProp = Object.defineProperty;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
 const common_vendor = require("../../../common/vendor.js");
 const tmui_tool_function_preview = require("./preview.js");
 function isNumber(arg, defaultNum = 0) {
@@ -23,7 +39,7 @@ function paginate(total, pageSize) {
 }
 function getValue(data, keys) {
   const keyArr = keys.split(".");
-  let result = { ...data };
+  let result = __spreadValues({}, data);
   for (const key of keyArr) {
     result = result[key];
     if (result === void 0 || result === null) {
@@ -400,15 +416,15 @@ function toast(word, mask = true, icon = "none") {
   });
 }
 function getWindow() {
-  var _a, _b, _c;
+  var _a, _b, _c, _d, _e;
   const sysinfo = common_vendor.index.getSystemInfoSync();
   let top = 0;
   let height = sysinfo.windowHeight;
   let nowPage = getCurrentPages().pop();
   let isCustomHeader = false;
-  ((_a = common_vendor.index.$tm) == null ? void 0 : _a.pages) ?? [];
-  let bottom = ((_b = sysinfo.safeAreaInsets) == null ? void 0 : _b.bottom) ?? 0;
-  if (((_c = common_vendor.index.$tm) == null ? void 0 : _c.globalNavStyle) == "custom") {
+  (_b = (_a = common_vendor.index.$tm) == null ? void 0 : _a.pages) != null ? _b : [];
+  let bottom = (_d = (_c = sysinfo.safeAreaInsets) == null ? void 0 : _c.bottom) != null ? _d : 0;
+  if (((_e = common_vendor.index.$tm) == null ? void 0 : _e.globalNavStyle) == "custom") {
     isCustomHeader = true;
   } else {
     for (let i = 0; i < common_vendor.index.$tm.pages.length; i++) {

@@ -1,0 +1,66 @@
+{
+	"pages/chat/chat.vue": [
+		"flex-between",
+		"text-size-xl",
+		"text-size-n",
+		"plusempty",
+		"type",
+		"size",
+		"chat",
+		"src",
+		"alt"
+	],
+	"tmui/components/tm-avatar/tm-avatar.vue": [
+		"flex-col-bottom-end",
+		"flex-center",
+		"trigger",
+		"avatar",
+		"round-",
+		"mx-$",
+		"my-$",
+		"r-0"
+	],
+	"tmui/components/tm-navbar/tm-navbar.vue": [
+		"flex-row-center-between",
+		"flex-row-center-center",
+		"flex-row-center-start",
+		"flex-row-center-end",
+		"statusHeightTop",
+		"statusBarHeight",
+		"text-overflow-1",
+		"text-weight-b",
+		"statusHeight",
+		"contentwidth",
+		"pointer",
+		"height",
+		"style",
+		"width",
+		"l-0",
+		"t-0",
+		"rpx",
+		"px"
+	],
+	"tmui/components/tm-text/tm-text.vue": [
+		"text-size-m",
+		"customClass",
+		"text-view",
+		"fontSize",
+		"nv"
+	],
+	"tmui/components/tm-sheet/tm-sheet.vue": [
+		"noNvueBorder",
+		"customClass",
+		"opacity-7",
+		"round",
+		"style"
+	],
+	"tmui/components/tm-icon/tm-icon.vue": [
+		"flex-row-center-center",
+		"d-inline-block",
+		"spinComputed",
+		"text-size-n",
+		"customClass",
+		"spin",
+		"ani"
+	]
+}

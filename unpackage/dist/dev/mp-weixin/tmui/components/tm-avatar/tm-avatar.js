@@ -1,4 +1,23 @@
 "use strict";
+var __defProp = Object.defineProperty;
+var __defProps = Object.defineProperties;
+var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
+var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 const common_vendor = require("../../../common/vendor.js");
 const tmui_tool_lib_minxs = require("../../tool/lib/minxs.js");
 if (!Math) {
@@ -9,8 +28,7 @@ const tmText = () => "../tm-text/tm-text.js";
 const tmIcon = () => "../tm-icon/tm-icon.js";
 const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
   __name: "tm-avatar",
-  props: {
-    ...tmui_tool_lib_minxs.custom_props,
+  props: __spreadProps(__spreadValues({}, tmui_tool_lib_minxs.custom_props), {
     size: {
       type: [Number],
       default: 90
@@ -84,7 +102,7 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       type: String,
       default: "rpx"
     }
-  },
+  }),
   emits: ["click"],
   setup(__props, { emit: __emit }) {
     const emits = __emit;
@@ -114,16 +132,23 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
     });
     const customCSSStyle = common_vendor.computed(() => tmui_tool_lib_minxs.computedStyle(props));
     const customClass = common_vendor.computed(() => tmui_tool_lib_minxs.computedClass(props));
-    const width = common_vendor.computed(() => props.size ?? 90);
-    const height = common_vendor.computed(() => props.size ?? 90);
+    const width = common_vendor.computed(() => {
+      var _a;
+      return (_a = props.size) != null ? _a : 90;
+    });
+    const height = common_vendor.computed(() => {
+      var _a;
+      return (_a = props.size) != null ? _a : 90;
+    });
     const fontSize = common_vendor.computed(() => {
+      var _a;
       if (props.fontSize)
         return props.fontSize;
       if (props.label)
         return parseInt(String(width.value)) * 0.4;
       if (props.icon)
         return parseInt(String(width.value)) * 0.7;
-      return props.size ?? 90;
+      return (_a = props.size) != null ? _a : 90;
     });
     const imgsize = common_vendor.computed(() => {
       return common_vendor.index.upx2px(fontSize.value - 4) + "px";

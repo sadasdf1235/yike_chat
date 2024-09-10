@@ -6,7 +6,7 @@
     "pages/search/search",
     "pages/message/message",
     "pages/user_detail/user_detail",
-    "pages/addFriend/addFriend"
+    "pages/add-friend/add-friend"
   ],
   "window": {
     "navigationBarTextStyle": "black",

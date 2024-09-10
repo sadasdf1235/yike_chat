@@ -1,4 +1,40 @@
 "use strict";
+var __defProp = Object.defineProperty;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
+var __async = (__this, __arguments, generator) => {
+  return new Promise((resolve, reject) => {
+    var fulfilled = (value) => {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    };
+    var rejected = (value) => {
+      try {
+        step(generator.throw(value));
+      } catch (e) {
+        reject(e);
+      }
+    };
+    var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+    step((generator = generator.apply(__this, __arguments)).next());
+  });
+};
 const common_vendor = require("../../../../../common/vendor.js");
 const uni_modules_zPaging_components_zPaging_js_zPagingStatic = require("./z-paging-static.js");
 const uni_modules_zPaging_components_zPaging_js_zPagingConstant = require("./z-paging-constant.js");
@@ -250,7 +286,7 @@ const _sfc_main = {
   computed: {
     // 当前z-paging的内置样式
     finalPagingStyle() {
-      const pagingStyle = { ...this.pagingStyle };
+      const pagingStyle = __spreadValues({}, this.pagingStyle);
       if (!this.systemInfo)
         return pagingStyle;
       const { windowTop, windowBottom } = this;
@@ -333,28 +369,30 @@ const _sfc_main = {
       common_vendor.index.vibrateShort();
     },
     // 设置z-paging高度
-    async _setAutoHeight(shouldFullHeight = true, scrollViewNode = null) {
-      let heightKey = "min-height";
-      heightKey = "min-height";
-      try {
-        if (shouldFullHeight) {
-          let finalScrollViewNode = scrollViewNode || await this._getNodeClientRect(".zp-scroll-view");
-          let finalScrollBottomNode = await this._getNodeClientRect(".zp-page-bottom");
-          if (finalScrollViewNode) {
-            const scrollViewTop = finalScrollViewNode[0].top;
-            let scrollViewHeight = this.windowHeight - scrollViewTop;
-            scrollViewHeight -= finalScrollBottomNode ? finalScrollBottomNode[0].height : 0;
-            const additionHeight = uni_modules_zPaging_components_zPaging_js_zPagingUtils.u.convertToPx(this.autoHeightAddition);
-            const finalHeight = scrollViewHeight + additionHeight - (this.insideMore ? 1 : 0) + "px !important";
-            this.$set(this.scrollViewStyle, heightKey, finalHeight);
-            this.$set(this.scrollViewInStyle, heightKey, finalHeight);
+    _setAutoHeight(shouldFullHeight = true, scrollViewNode = null) {
+      return __async(this, null, function* () {
+        let heightKey = "min-height";
+        heightKey = "min-height";
+        try {
+          if (shouldFullHeight) {
+            let finalScrollViewNode = scrollViewNode || (yield this._getNodeClientRect(".zp-scroll-view"));
+            let finalScrollBottomNode = yield this._getNodeClientRect(".zp-page-bottom");
+            if (finalScrollViewNode) {
+              const scrollViewTop = finalScrollViewNode[0].top;
+              let scrollViewHeight = this.windowHeight - scrollViewTop;
+              scrollViewHeight -= finalScrollBottomNode ? finalScrollBottomNode[0].height : 0;
+              const additionHeight = uni_modules_zPaging_components_zPaging_js_zPagingUtils.u.convertToPx(this.autoHeightAddition);
+              const finalHeight = scrollViewHeight + additionHeight - (this.insideMore ? 1 : 0) + "px !important";
+              this.$set(this.scrollViewStyle, heightKey, finalHeight);
+              this.$set(this.scrollViewInStyle, heightKey, finalHeight);
+            }
+          } else {
+            this.$delete(this.scrollViewStyle, heightKey);
+            this.$delete(this.scrollViewInStyle, heightKey);
           }
-        } else {
-          this.$delete(this.scrollViewStyle, heightKey);
-          this.$delete(this.scrollViewInStyle, heightKey);
+        } catch (e) {
         }
-      } catch (e) {
-      }
+      });
     },
     // 组件销毁后续处理
     _handleUnmounted() {

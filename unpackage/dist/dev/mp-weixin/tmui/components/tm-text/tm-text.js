@@ -1,12 +1,30 @@
 "use strict";
+var __defProp = Object.defineProperty;
+var __defProps = Object.defineProperties;
+var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
+var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 const common_vendor = require("../../../common/vendor.js");
 const tmui_tool_theme_theme = require("../../tool/theme/theme.js");
 const tmui_tool_lib_minxs = require("../../tool/lib/minxs.js");
 const tmui_tool_lib_tmpinia = require("../../tool/lib/tmpinia.js");
 const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
   __name: "tm-text",
-  props: {
-    ...tmui_tool_lib_minxs.custom_props,
+  props: __spreadProps(__spreadValues({}, tmui_tool_lib_minxs.custom_props), {
     label: {
       type: [String, Number],
       default: ""
@@ -42,7 +60,7 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       type: Boolean,
       default: false
     }
-  },
+  }),
   emits: ["click"],
   setup(__props, { emit: __emit }) {
     const store = tmui_tool_lib_tmpinia.useTmpiniaStore();
@@ -56,12 +74,12 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
     const isDark = common_vendor.computed(() => tmui_tool_lib_minxs.computedDark(props, tmcfg.value));
     const _label = common_vendor.computed(() => props.label);
     const _fontSize = common_vendor.computed(() => {
-      var _a, _b;
+      var _a, _b, _c, _d;
       let times = 1;
       if (props.aging) {
-        times = Math.floor(Number((appBaseInfo == null ? void 0 : appBaseInfo.fontSizeSetting) ?? 16) / 16 * 10) / 10;
+        times = Math.floor(Number((_a = appBaseInfo == null ? void 0 : appBaseInfo.fontSizeSetting) != null ? _a : 16) / 16 * 10) / 10;
       }
-      return Number(props.fontSize) * (((_b = (_a = store == null ? void 0 : store.tmuiConfig) == null ? void 0 : _a.themeConfig) == null ? void 0 : _b.globalFontSizeRatio) ?? 1) * times;
+      return Number(props.fontSize) * ((_d = (_c = (_b = store == null ? void 0 : store.tmuiConfig) == null ? void 0 : _b.themeConfig) == null ? void 0 : _c.globalFontSizeRatio) != null ? _d : 1) * times;
     });
     const appTextColor = common_vendor.inject(
       "appTextColor",

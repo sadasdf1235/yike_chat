@@ -1,4 +1,24 @@
 "use strict";
+var __async = (__this, __arguments, generator) => {
+  return new Promise((resolve2, reject) => {
+    var fulfilled = (value) => {
+      try {
+        step(generator.next(value));
+      } catch (e2) {
+        reject(e2);
+      }
+    };
+    var rejected = (value) => {
+      try {
+        step(generator.throw(value));
+      } catch (e2) {
+        reject(e2);
+      }
+    };
+    var step = (x) => x.done ? resolve2(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+    step((generator = generator.apply(__this, __arguments)).next());
+  });
+};
 const _export_sfc = (sfc, props) => {
   const target = sfc.__vccOpts || sfc;
   for (const [key, val] of props) {
@@ -11503,80 +11523,82 @@ function apply(app, i18n, ...options) {
 }
 const VUE_I18N_COMPONENT_TYPES = "vue-i18n: composer properties";
 let devtoolsApi;
-async function enableDevTools(app, i18n) {
-  return new Promise((resolve2, reject) => {
-    try {
-      setupDevtoolsPlugin({
-        id: "vue-devtools-plugin-vue-i18n",
-        label: VueDevToolsLabels[
-          "vue-devtools-plugin-vue-i18n"
-          /* PLUGIN */
-        ],
-        packageName: "vue-i18n",
-        homepage: "https://vue-i18n.intlify.dev",
-        logo: "https://vue-i18n.intlify.dev/vue-i18n-devtools-logo.png",
-        componentStateTypes: [VUE_I18N_COMPONENT_TYPES],
-        app
-      }, (api) => {
-        devtoolsApi = api;
-        api.on.visitComponentTree(({ componentInstance, treeNode }) => {
-          updateComponentTreeTags(componentInstance, treeNode, i18n);
-        });
-        api.on.inspectComponent(({ componentInstance, instanceData }) => {
-          if (componentInstance.vnode.el.__VUE_I18N__ && instanceData) {
-            if (i18n.mode === "legacy") {
-              if (componentInstance.vnode.el.__VUE_I18N__ !== i18n.global.__composer) {
+function enableDevTools(app, i18n) {
+  return __async(this, null, function* () {
+    return new Promise((resolve2, reject) => {
+      try {
+        setupDevtoolsPlugin({
+          id: "vue-devtools-plugin-vue-i18n",
+          label: VueDevToolsLabels[
+            "vue-devtools-plugin-vue-i18n"
+            /* PLUGIN */
+          ],
+          packageName: "vue-i18n",
+          homepage: "https://vue-i18n.intlify.dev",
+          logo: "https://vue-i18n.intlify.dev/vue-i18n-devtools-logo.png",
+          componentStateTypes: [VUE_I18N_COMPONENT_TYPES],
+          app
+        }, (api) => {
+          devtoolsApi = api;
+          api.on.visitComponentTree(({ componentInstance, treeNode }) => {
+            updateComponentTreeTags(componentInstance, treeNode, i18n);
+          });
+          api.on.inspectComponent(({ componentInstance, instanceData }) => {
+            if (componentInstance.vnode.el.__VUE_I18N__ && instanceData) {
+              if (i18n.mode === "legacy") {
+                if (componentInstance.vnode.el.__VUE_I18N__ !== i18n.global.__composer) {
+                  inspectComposer(instanceData, componentInstance.vnode.el.__VUE_I18N__);
+                }
+              } else {
                 inspectComposer(instanceData, componentInstance.vnode.el.__VUE_I18N__);
               }
-            } else {
-              inspectComposer(instanceData, componentInstance.vnode.el.__VUE_I18N__);
             }
-          }
+          });
+          api.addInspector({
+            id: "vue-i18n-resource-inspector",
+            label: VueDevToolsLabels[
+              "vue-i18n-resource-inspector"
+              /* CUSTOM_INSPECTOR */
+            ],
+            icon: "language",
+            treeFilterPlaceholder: VueDevToolsPlaceholders[
+              "vue-i18n-resource-inspector"
+              /* CUSTOM_INSPECTOR */
+            ]
+          });
+          api.on.getInspectorTree((payload) => {
+            if (payload.app === app && payload.inspectorId === "vue-i18n-resource-inspector") {
+              registerScope(payload, i18n);
+            }
+          });
+          api.on.getInspectorState((payload) => {
+            if (payload.app === app && payload.inspectorId === "vue-i18n-resource-inspector") {
+              inspectScope(payload, i18n);
+            }
+          });
+          api.on.editInspectorState((payload) => {
+            if (payload.app === app && payload.inspectorId === "vue-i18n-resource-inspector") {
+              editScope(payload, i18n);
+            }
+          });
+          api.addTimelineLayer({
+            id: "vue-i18n-timeline",
+            label: VueDevToolsLabels[
+              "vue-i18n-timeline"
+              /* TIMELINE */
+            ],
+            color: VueDevToolsTimelineColors[
+              "vue-i18n-timeline"
+              /* TIMELINE */
+            ]
+          });
+          resolve2(true);
         });
-        api.addInspector({
-          id: "vue-i18n-resource-inspector",
-          label: VueDevToolsLabels[
-            "vue-i18n-resource-inspector"
-            /* CUSTOM_INSPECTOR */
-          ],
-          icon: "language",
-          treeFilterPlaceholder: VueDevToolsPlaceholders[
-            "vue-i18n-resource-inspector"
-            /* CUSTOM_INSPECTOR */
-          ]
-        });
-        api.on.getInspectorTree((payload) => {
-          if (payload.app === app && payload.inspectorId === "vue-i18n-resource-inspector") {
-            registerScope(payload, i18n);
-          }
-        });
-        api.on.getInspectorState((payload) => {
-          if (payload.app === app && payload.inspectorId === "vue-i18n-resource-inspector") {
-            inspectScope(payload, i18n);
-          }
-        });
-        api.on.editInspectorState((payload) => {
-          if (payload.app === app && payload.inspectorId === "vue-i18n-resource-inspector") {
-            editScope(payload, i18n);
-          }
-        });
-        api.addTimelineLayer({
-          id: "vue-i18n-timeline",
-          label: VueDevToolsLabels[
-            "vue-i18n-timeline"
-            /* TIMELINE */
-          ],
-          color: VueDevToolsTimelineColors[
-            "vue-i18n-timeline"
-            /* TIMELINE */
-          ]
-        });
-        resolve2(true);
-      });
-    } catch (e2) {
-      console.error(e2);
-      reject(false);
-    }
+      } catch (e2) {
+        console.error(e2);
+        reject(false);
+      }
+    });
   });
 }
 function updateComponentTreeTags(instance, treeNode, i18n) {
@@ -11925,39 +11947,41 @@ function createI18n(options = {}) {
       return __legacyMode ? "legacy" : "composition";
     },
     // install plugin
-    async install(app, ...options2) {
-      {
-        app.__VUE_I18N__ = i18n;
-      }
-      app.__VUE_I18N_SYMBOL__ = symbol;
-      app.provide(app.__VUE_I18N_SYMBOL__, i18n);
-      if (!__legacyMode && __globalInjection) {
-        injectGlobalFields(app, i18n.global);
-      }
-      {
-        apply(app, i18n, ...options2);
-      }
-      if (__legacyMode) {
-        app.mixin(defineMixin(__global, __global.__composer, i18n));
-      }
-      {
-        const ret = await enableDevTools(app, i18n);
-        if (!ret) {
-          throw createI18nError(
-            21
-            /* CANNOT_SETUP_VUE_DEVTOOLS_PLUGIN */
-          );
+    install(app, ...options2) {
+      return __async(this, null, function* () {
+        {
+          app.__VUE_I18N__ = i18n;
         }
-        const emitter2 = createEmitter();
+        app.__VUE_I18N_SYMBOL__ = symbol;
+        app.provide(app.__VUE_I18N_SYMBOL__, i18n);
+        if (!__legacyMode && __globalInjection) {
+          injectGlobalFields(app, i18n.global);
+        }
+        {
+          apply(app, i18n, ...options2);
+        }
         if (__legacyMode) {
-          const _vueI18n = __global;
-          _vueI18n.__enableEmitter && _vueI18n.__enableEmitter(emitter2);
-        } else {
-          const _composer = __global;
-          _composer[EnableEmitter] && _composer[EnableEmitter](emitter2);
+          app.mixin(defineMixin(__global, __global.__composer, i18n));
         }
-        emitter2.on("*", addTimelineEvent);
-      }
+        {
+          const ret = yield enableDevTools(app, i18n);
+          if (!ret) {
+            throw createI18nError(
+              21
+              /* CANNOT_SETUP_VUE_DEVTOOLS_PLUGIN */
+            );
+          }
+          const emitter2 = createEmitter();
+          if (__legacyMode) {
+            const _vueI18n = __global;
+            _vueI18n.__enableEmitter && _vueI18n.__enableEmitter(emitter2);
+          } else {
+            const _composer = __global;
+            _composer[EnableEmitter] && _composer[EnableEmitter](emitter2);
+          }
+          emitter2.on("*", addTimelineEvent);
+        }
+      });
     },
     // global accessor
     get global() {
@@ -12176,6 +12200,7 @@ const createHook = (lifecycle) => (hook, target = getCurrentInstance()) => {
 const onShow = /* @__PURE__ */ createHook(ON_SHOW);
 const onHide = /* @__PURE__ */ createHook(ON_HIDE);
 const onLaunch = /* @__PURE__ */ createHook(ON_LAUNCH);
+const onLoad = /* @__PURE__ */ createHook(ON_LOAD);
 const onShareTimeline = /* @__PURE__ */ createHook(ON_SHARE_TIMELINE);
 const onShareAppMessage = /* @__PURE__ */ createHook(ON_SHARE_APP_MESSAGE);
 exports.Pinia = Pinia;
@@ -12198,6 +12223,7 @@ exports.o = o;
 exports.onBeforeMount = onBeforeMount;
 exports.onHide = onHide;
 exports.onLaunch = onLaunch;
+exports.onLoad = onLoad;
 exports.onMounted = onMounted;
 exports.onShareAppMessage = onShareAppMessage;
 exports.onShareTimeline = onShareTimeline;
@@ -12205,6 +12231,7 @@ exports.onShow = onShow;
 exports.p = p;
 exports.provide = provide;
 exports.r = r;
+exports.reactive = reactive;
 exports.ref = ref;
 exports.resolveComponent = resolveComponent;
 exports.s = s;
