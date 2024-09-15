@@ -2,7 +2,8 @@
 	<tm-app>
 		<tm-navbar hideHome hideBack title="" :leftWidth="500">
 			<template #left>
-				<tm-input class="fulled" :margin="[16,0]" suffix="tmicon-search" v-model="keyword" placeholder="ID/昵称/群"></tm-input>
+				<tm-input class="fulled" :margin="[16,0]" suffix="tmicon-search" v-model="keyword"
+					placeholder="ID/昵称/群"></tm-input>
 			</template>
 			<template #right>
 				<text class="mr-16" @click="back">取消</text>
@@ -16,7 +17,9 @@
 						src="https://ts2.cn.mm.bing.net/th?id=ORMS.136ee85a4781fba51b21ca943e849ab4&pid=Wdp&w=300&h=156&qlt=90&c=1&rs=1&dpr=1.25&p=0"
 						alt="" />
 					<text class="name ml-32 text-size-m flex-5">adsada</text>
-					<button class="handle_active w-120 h-48 lh-48 fs-24 text-#4aaaff flex-2 rd-24" @click.stop="handleClick($event)">发消息</button>
+					<button class="w-120 h-48 lh-48 fs-24 text-#4aaaff flex-2 rd-24"
+						:class="true ? ['bg-#FFE431','text-#272832']:'bg-#42b983ff'"
+						@click.stop="handleClick($event)">发消息</button>
 				</view>
 			</view>
 		</view>
@@ -42,14 +45,4 @@
 
 <style lang="scss" scoped>
 
-	.handle {
-		background: rgba(74, 170, 255, 0.10);
-		color: #4AAAFF;
-	}
-
-	.handle_active {
-		@extend .handle;
-		background: #FFE431;
-		color: #272832;
-	}
 </style>

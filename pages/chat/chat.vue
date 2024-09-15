@@ -13,7 +13,7 @@
 				</template>
 			</tm-navbar>
 		</template>
-		<view class="px-32 py-10">
+		<view class="px-32 py-10 bg-#fff">
 			<view class="flex flex-between mt-30" v-for="chat in 10" :key="chat" @click="intoMessage(chat)">
 				<tm-avatar :size="96" :round="4"
 					img="https://ts2.cn.mm.bing.net/th?id=ORMS.3eb85da3993ccf02c1d5f09582891300&pid=Wdp&w=300&h=156&qlt=90&c=1&rs=1&dpr=1.25&p=0"></tm-avatar>

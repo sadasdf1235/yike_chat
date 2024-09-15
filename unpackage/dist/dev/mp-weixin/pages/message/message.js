@@ -16,6 +16,13 @@ function _sfc_render(_ctx, _cache) {
     a: common_vendor.p({
       title: "name",
       hideHome: true
+    }),
+    b: common_vendor.f(10, (item, index, i0) => {
+      return {
+        a: common_vendor.n(index % 2 == 0 ? ["mr-0 ml-20"] : ""),
+        b: common_vendor.n(index % 2 == 0 ? ["bg-FFE431-color", "accept_content"] : ""),
+        c: common_vendor.n(index % 2 == 0 ? ["flex-row-reverse"] : "")
+      };
     })
   };
 }
