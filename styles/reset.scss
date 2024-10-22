@@ -1,0 +1,21 @@
+view,
+page,
+text,
+button,
+image,
+textarea,
+scroll-view,
+input {
+  box-sizing: border-box;
+}
+image {
+  display: block;
+}
+button {
+  margin: 0;
+  padding: 0;
+  background-color: #ffff;
+}
+button::after {
+  border: none;
+}

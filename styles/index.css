@@ -1,0 +1,9 @@
+:root {
+  --theme-color: #2c79ff;
+  --text-normal: #333;
+  --text-minor: #999;
+  --text-minor-2: #CBCBCB;
+  --text-importance: #ED3522;
+  --family-dakai: 'AlimamaDongFangDaKai', sans-serif;
+  --family-liti: 'AlimamaDaoLiTi', sans-serif;
+}

@@ -12,16 +12,16 @@
     "lib": ["esnext", "dom"],
     "types": ["@dcloudio/types"],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./*"]
     }
   },
   "include": [
-    "./src/*.vue",
-    "./src/**/*.vue",
-    "./src/*.nvue",
-    "./src/**/*.nvue",
-    "./src/*.ts",
-    "./src/*.d.ts",
-    "./src/**/*.ts"
+    "./*.vue",
+    "./**/*.vue",
+    "./*.nvue",
+    "./**/*.nvue",
+    "./*.ts",
+    "./*.d.ts",
+    "./**/*.ts"
   ]
 }

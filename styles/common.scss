@@ -1,0 +1,23 @@
+.content-wrapper {
+  @apply w-full h-full relative z-0;
+}
+
+.text-normal {
+  @apply fs-30rpx font-500 text-$text-normal;
+}
+
+.text-minor {
+  @apply fs-23rpx font-400 text-$text-minor;
+}
+
+.box-card {
+  @apply bg-#fff rd-13rpx;
+}
+
+.bg-set {
+  @apply absolute w-full h-full top-0 left-0 z--1;
+}
+
+.title {
+  font-family: var(--family-dakai);
+}

@@ -62,45 +62,5 @@
 		"text-view",
 		"fontSize",
 		"nv"
-	],
-	"pages/message/message.vue": [
-		"text-align-center",
-		"d-inline-block",
-		"accept_content",
-		"send_content",
-		"text-size-n",
-		"fs-32"
-	],
-	"tmui/components/tm-app/tm-app.vue": [
-		"app"
-	],
-	"pages/search/search.vue": [
-		"tmicon-search",
-		"text-weight-b",
-		"flex-center",
-		"text-size-m",
-		"fulled",
-		"margin",
-		"suffix",
-		"pa-32",
-		"fs-24",
-		"back",
-		"name",
-		"true"
-	],
-	"tmui/components/tm-input/tm-input.vue": [
-		"flex-row-center-start",
-		"showPasswordIcon",
-		"textarea",
-		"height",
-		"style",
-		"width",
-		"wrap",
-		"l-0",
-		"t-0",
-		"rpx",
-		"r-0",
-		"b-$"
-	],
-	"tmui/components/tm-button/tm-button.vue": []
+	]
 }
