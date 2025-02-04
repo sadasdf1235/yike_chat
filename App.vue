@@ -12,6 +12,8 @@
 </script>
 
 <style lang="scss">
+	/* 图标必须 */
+	@import url(@/uni_modules/tm-ui/css/remixicon.min.css);
 	/* #ifdef APP-NVUE */
 	@import './tmui/scss/nvue.css';
 	/* #endif */
